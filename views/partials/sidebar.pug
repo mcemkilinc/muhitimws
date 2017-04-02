@@ -1,0 +1,37 @@
+#sidebar-wrapper
+ ul.sidebar-nav
+  li.sidebar-brand
+        a(href='#')
+        | Muhitim - Yerel Fırsatlar
+  if !user
+    li
+        a(href='/login') Giriş
+    li
+        a(href='/signup') Hesap Yarat
+  else
+    li.dropdown(class=(title == 'Account Management') ? 'active' : undefined)
+        a.dropdown-toggle(href='#', data-toggle='dropdown')
+          if user.profile.picture
+            img(src=user.profile.picture)
+          else
+            img(src=user.gravatar(60))
+          span= user.profile.name || user.email || user.id
+          i.caret
+        ul.dropdown-menu
+          li
+            a(href='/account') My Account
+          li.divider
+          li
+            a(href='/logout') Logout
+  li
+    a(href='#') Muhitini Seç
+  li
+    a(href='#') Fırsatlara Bak
+  li
+    a(href='#') Fırsat Tanımla
+  li
+    a(href='#') İletişim
+  li
+    a(href='/createProductCampaign') Ürün Kampanyası Yarat
+    // /#sidebar-wrapper
+    // Page Content

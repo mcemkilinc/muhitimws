@@ -1,0 +1,41 @@
+extends ../layout
+
+block content
+    .page-header
+        h3 Yeni ürün Kampanyası
+    form.form-horizontal(action='/merchant/createProductCampaign', method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group
+            label.col-sm-3.control-label(for='productCampaignQueueNumber') Kampanya Sırası
+            .col-sm-7
+                input.form-control(type='text', name='productCampaignQueueNumber', id='productCampaignQueueNumber', value='Duyuru Sıra No')
+        .form-group
+            label.col-sm-3.control-label(for='productName') Ürün Adı
+            .col-sm-7
+                input.form-control(type='text', name='productName', id='productName', value='Ürün Adı Giriniz')
+        .form-group
+            label.col-sm-3.control-label(for='oldPrice') Eski Fiyat
+            .col-sm-7
+                input.form-control(type='text', name='oldPrice', id='oldPrice', value='Eski Fiyatı Giriniz')
+        .form-group
+            label.col-sm-3.control-label(for='newPrice') Yeni Fiyat
+            .col-sm-7
+                input.form-control(type='text', name='newPrice', id='newPrice', value='Yeni Fiyatı Giriniz')
+        .form-group
+            label.col-sm-3.control-label(for='validUntil') Geçerlilik Tarihi
+            .col-sm-7
+                input.form-control(type='text', name='validUntil', id='validUntil', value='Geçerlilik Tarihini Giriniz')
+        .form-group
+            label.col-sm-3.control-label Ürün Resmi
+            .col-sm-7
+                button.btn.btn.btn-primary(type='button',onclick="window.location.href='/uploadfile'")
+                    i.fa.fa-pencil
+                    | Ürün Resmi Yükle
+                button.btn.btn.btn-primary(type='button',onclick="window.location.href='/showpicture'")
+                    i.fa.fa-pencil
+                    | Ürün Resmi Göster
+        .form-group
+            .col-sm-offset-3.col-sm-4
+                button.btn.btn.btn-primary(type='submit')
+                    i.fa.fa-pencil
+                    | Ürün Tanımı Oluştur
