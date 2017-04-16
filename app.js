@@ -35,6 +35,7 @@ const userController = require('./controllers/user');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 const productCampaignController = require('./controllers/productCampaignController');
+const merchantController = require('./controllers/merchantController');
 
 
 /**
@@ -137,6 +138,16 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 
 app.get('/createProductCampaign', productCampaignController.getcreateProductCampaign);
 app.post('/merchant/createProductCampaign', productCampaignController.postcreateProductCampaign);
+
+app.get('/administration', administrationController.getadminHome);
+app.post('/administration', administrationController.postadminHome);
+
+app.get('/notification/createMerchant', merchantController.getcreateMerchant);
+app.post('/notification/createMerchant', merchantController.postcreateMerchant);
+app.get('/notification/manageMerchants', merchantController.getManageMerchants);
+app.get('/notification/updateMerchant', merchantController.getUpdateMerchant);
+app.post('/notification/updateMerchant', merchantController.postUpdateMerchant);
+app.get('/notification/deleteMerchant', merchantController.getDeleteMerchant);
 
 /**
  * API examples routes.
