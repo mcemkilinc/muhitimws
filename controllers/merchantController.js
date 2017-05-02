@@ -1,44 +1,39 @@
 /**
  * Created by Cem on 4/16/2017.
  */
-/**
- * Created by Cem on 1/28/2017.
- */
 
 const Merchant = require('../models/Merchant');
 
-exports.getcreateMerchant = (req, res)=> {
-    res.render('/merchant/createMerchant', {
-    });
+exports.getCreateMerchant = function(req, res) {
+  res.render('merchant/createMerchant', {});
 };
 
-exports.postcreateMerchant = function(req, res,next) {
-    console.log("postcrateMerchantcalled");
-    var errors = req.validationErrors();
+exports.postCreateMerchant = function(req, res, next) {
+  console.log('postcrateMerchantcalled');
+  var errors = req.validationErrors();
 
-    if (errors) {
-        req.flash('errors', errors);
-        return res.redirect('/merchant/createMerchant');
-    }
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/merchant/createMerchant');
+  }
+  var mMerchant = new Merchant();
 
-    var mMerchant = new Merchant();
-
-    mMerchant.productCampaign_data.productName = req.body.productName || '';
-    mMerchant.productCampaign_data.productCampaignQueueNumber = req.body.productCampaignQueueNumber || '';
-    mMerchant.productCampaign_data.imageFileID = req.body.imageFileID || '';
-    mMerchant.productCampaign_data.oldPrice = req.body.oldPrice || '';
-    mMerchant.productCampaign_data.newPrice = req.body.newPrice || '';
+  mMerchant.productCampaign_data.productName = req.body.productName || '';
+  mMerchant.productCampaign_data.productCampaignQueueNumber = req.body.productCampaignQueueNumber || '';
+  mMerchant.productCampaign_data.imageFileID = req.body.imageFileID || '';
+  mMerchant.productCampaign_data.oldPrice = req.body.oldPrice || '';
+  mMerchant.productCampaign_data.newPrice = req.body.newPrice || '';
 
     mMerchant.save(function (err) {
 
-        if (err) {
-            return next(err);
-        }
-
+      if (err) {
+        return next(err);
+      }
         req.flash('success', {msg: 'Yeni Kampanya Eklendi.'});
         res.redirect('/merchant/manageMerchants');
     });
 };
+
 exports.getManageMerchants = function(req, res) {
     var sMerchants;
     Merchant.find({}, function(err, sMerchants){

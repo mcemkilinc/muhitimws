@@ -36,6 +36,7 @@ const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 const productCampaignController = require('./controllers/productCampaignController');
 const merchantController = require('./controllers/merchantController');
+const administrationController = require('./controllers/adminController');
 
 
 /**
@@ -53,7 +54,7 @@ const app = express();
  */
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
-mongoose.connection.on('error', () => {
+mongoose.connection.on('error', function (){
   console.log('%s MongoDB connection error. Please make sure MongoDB is running.', chalk.red('✗'));
   process.exit();
 });
@@ -136,18 +137,16 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
+// merchant entry points
 app.get('/createProductCampaign', productCampaignController.getcreateProductCampaign);
-app.post('/merchant/createProductCampaign', productCampaignController.postcreateProductCampaign);
+app.get('/createMerchant', merchantController.getCreateMerchant);
+app.post('/createMerchant', merchantController.postCreateMerchant);
+app.get('/manageMerchants', merchantController.getManageMerchants);
+app.post('/merchant/', productCampaignController.postcreateProductCampaign);
+app.post('/merchant/', productCampaignController.postcreateProductCampaign);
 
-app.get('/administration', administrationController.getadminHome);
-app.post('/administration', administrationController.postadminHome);
+app.get('/administration', administrationController.getAdmin);
 
-app.get('/notification/createMerchant', merchantController.getcreateMerchant);
-app.post('/notification/createMerchant', merchantController.postcreateMerchant);
-app.get('/notification/manageMerchants', merchantController.getManageMerchants);
-app.get('/notification/updateMerchant', merchantController.getUpdateMerchant);
-app.post('/notification/updateMerchant', merchantController.postUpdateMerchant);
-app.get('/notification/deleteMerchant', merchantController.getDeleteMerchant);
 
 /**
  * API examples routes.

@@ -2,32 +2,32 @@ extends ../layout
 
 block content
   .page-header
-    h3 Yeni Duyuru Oluştur
-
-  form.form-horizontal(action='/notification/createNotification', method='POST')
-    input(type='hidden', name='_csrf', value=_csrf)
-    .form-group
-      label.col-sm-3.control-label(for='queueNumber') Duyuru Sıra Numarası
-      .col-sm-7
-        input.form-control(type='text', name='queueNumber', id='queueNumber', value='Duyuru Sıra No')
-    .form-group
-      label.col-sm-3.control-label(for='shortText') Kısa Metin
-      .col-sm-7
-        input.form-control(type='text', name='shortText', id='shortText', value='Kısa Metin')
-    .form-group
-      label.col-sm-3.control-label(for='longText') Uzun Metin
-      .col-sm-7
-       input.form-control(type='text', name='longText', id='longText', value='Uzun Metin')
-    .form-group
-      label.col-sm-3.control-label(for='siteLink') Duyuru Linki
-      .col-sm-7
-       input.form-control(type='text', name='siteLink', id='siteLink', value='Duyuru Linki')
-    .form-group
-      label.col-sm-3.control-label(for='siteLink') Mobil Push?
-      .col-sm-7
-        input.form-control(type='text', name='mobilPush', id='mobilPush', value='mobilPush')
-    .form-group
-      .col-sm-offset-3.col-sm-4
-        button.btn.btn.btn-primary(type='submit')
-          i.fa.fa-pencil
-          | Duyuru Oluştur
+    h3 Yeni Esnaf Oluştur
+  .container-fluid 
+      form.form-horizontal(action='/merchant/createMerchant', method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .form-group
+          label.col-sm-3.control-label(for='merchantName') Esnaf Adı
+          .col-sm-7
+            input.form-control(type='text', name='merchantName', id='merchantName', value='Esnaf Adı')
+        .form-group
+          label.col-sm-3.control-label(for='merchantLocationLat') Esnaf Enlem
+          .col-sm-7
+            input.form-control(type='text', name='merchantLocationLat', id='merchantLocationLat', value='Enlem')
+        .form-group
+          label.col-sm-3.control-label(for='merchantLocationLong') Esnaf Boylam
+          .col-sm-7
+           input.form-control(type='text', name='merchantLocationLong', id='merchantLocationLong', value='Boylam')
+        .form-group
+          label.col-sm-3.control-label(for='merchantBusinessDomain') İş Alanı
+          .col-sm-7
+           input.form-control(type='text', name='merchantBusinessDomain', id='merchantBusinessDomain', value='merchantBusinessDomain')
+        .form-group
+          label.col-sm-3.control-label(for='merchantWeeklyEligiblePromotion') İzin Verilen Promosyon Sayısı
+          .col-sm-7
+            input.form-control(type='text', name='merchantWeeklyEligiblePromotion', id='merchantWeeklyEligiblePromotion', value='merchantWeeklyEligiblePromotion')
+        .form-group
+          .col-sm-offset-3.col-sm-4
+            button.btn.btn.btn-primary(type='submit')
+              i.fa.fa-pencil
+              | Esnaf Oluştur
