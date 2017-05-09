@@ -37,6 +37,8 @@ const contactController = require('./controllers/contact');
 const productCampaignController = require('./controllers/productCampaignController');
 const merchantController = require('./controllers/merchantController');
 const administrationController = require('./controllers/adminController');
+const locationController = require('./controllers/muhitimLocationController');
+const customerController = require('./controllers/customerController');
 
 
 /**
@@ -137,15 +139,26 @@ app.post('/account/password', passportConfig.isAuthenticated, userController.pos
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
 
-// merchant entry points
-app.get('/createProductCampaign', productCampaignController.getcreateProductCampaign);
+
+
+// merchant app routes
 app.get('/createMerchant', merchantController.getCreateMerchant);
 app.post('/createMerchant', merchantController.postCreateMerchant);
+app.get('/updateMerchant', merchantController.getUpdateMerchant);
+app.post('/updateMerchant', merchantController.postUpdateMerchant);
+app.get('/deleteMerchant', merchantController.getDeleteMerchant);
 app.get('/manageMerchants', merchantController.getManageMerchants);
-app.post('/merchant/', productCampaignController.postcreateProductCampaign);
-app.post('/merchant/', productCampaignController.postcreateProductCampaign);
 
+//location app routes
+app.get('/selectLocation', locationController.getSelectLocation);
+app.post('/selectLocation', locationController.postSelectLocation);
+
+//administration app routes
 app.get('/administration', administrationController.getAdmin);
+
+//customer app routes
+app.get('/merchantListinMuhit', customerController.getMerchantListinMuhit);
+app.get('/createProductCampaign', productCampaignController.getcreateProductCampaign);
 
 
 /**

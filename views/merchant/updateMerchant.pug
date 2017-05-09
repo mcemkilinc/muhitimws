@@ -1,3 +1,47 @@
-//
-   Created by Cem on 1/28/2017.
+extends ../layout
+
+block content
+  .page-header
+    h3 Esnaf Güncelle
+
+  form.form-horizontal(action='/updateMerchant', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      input.form-control(type='hidden', name='docid', id='docid', value=sMerchant._id)
+    .form-group
+      label.col-sm-3.control-label(for='merchantName') Esnaf Adı
+      .col-sm-7
+        input.form-control(type='text', name='merchantName', id='merchantName', value=sMerchant.merchant_data.merchantName)
+    .form-group
+      label.col-sm-3.control-label(for='merchantLocationLat') Esnaf Enlem
+      .col-sm-7
+        input.form-control(type='text', name='merchantLocationLat', id='merchantLocationLat', value=sMerchant.merchant_data.merchantLocationLat)
+    .form-group
+      label.col-sm-3.control-label(for='merchantLocationLong') Esnaf Boylam
+      .col-sm-7
+       input.form-control(type='text', name='merchantLocationLong', id='merchantLocationLong', value=sMerchant.merchant_data.merchantLocationLong)
+       button.btn.btn.btn-primary(type='button',onclick!="window.location.href='/selectLocation?LocationType=MerchantLocation&rMerchant="+sMerchant._id+"'")
+           i.fa.fa-pencil
+           | Lokasyonu Haritadan Seç
+    .form-group
+      label.col-sm-3.control-label(for='merchantBusinessDomain') İş Alanı
+      .col-sm-7
+       input.form-control(type='text', name='merchantBusinessDomain', id='merchantBusinessDomain', value=value=sMerchant.merchant_data.merchantBusinessDomain)
+    .form-group
+      label.col-sm-3.control-label(for='merchantWeeklyEligiblePromotion') İzin Verilen Promosyon Sayısı
+      .col-sm-7
+        input.form-control(type='text', name='merchantWeeklyEligiblePromotion', id='merchantWeeklyEligiblePromotion', value=value=sMerchant.merchant_data.merchantWeeklyEligiblePromotion)
+    .form-group
+      label.col-sm-3.control-label(for='merchantMembershipStart') Üyelik Başlangıç Tarihi
+      .col-sm-7
+        input.form-control(type='date', name='merchantMembershipStart', id='merchantMembershipStart', value=value=sMerchant.merchant_data.merchantMembershipStart)
+    .form-group
+      label.col-sm-3.control-label(for='merchantMembershipEnds') Üyelik Bitiş Tarihi
+      .col-sm-7
+        input.form-control(type='date', name='merchantMembershipEnds', id='merchantMembershipEnds', value=value=sMerchant.merchant_data.merchantMembershipEnds)
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn.btn-primary(type='submit')
+          i.fa.fa-pencil
+          | Esnaf Güncelle
 

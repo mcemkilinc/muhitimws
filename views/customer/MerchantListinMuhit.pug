@@ -3,7 +3,7 @@ extends ../layout
 block content
 
   .page-header
-    h3 Esnafları Yönet
+    h3 Yakın Esnaflar
   .container-fluid
    table(class=table).table-bordered.table-hover.table-striped.table-condensed
     thead
@@ -11,17 +11,11 @@ block content
        th Esnaf Kod
        th Esnaf Adı
        th İş Alanı
-       th İzin Verilen Promosyon Sayısı
-       th Üyelik Başlangıcı
-       th Üyelik Bitişi
     for jMerchant in sMerchants
      tr
       td #{jMerchant._id}
       td #{jMerchant.merchant_data.merchantName}
       td #{jMerchant.merchant_data.merchantBusinessDomain}
-      td #{jMerchant.merchant_data.merchantWeeklyEligiblePromotion}
-      td #{jMerchant.merchant_data.merchantMembershipStart}
-      td #{jMerchant.merchant_data.merchantMembershipEnds}
       td
         .button.btn-primary(onclick="location.href = '/updateMerchant?id="+jMerchant._id+"'")
          | Güncelle

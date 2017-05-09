@@ -18,19 +18,19 @@ exports.postCreateMerchant = function(req, res, next) {
   }
   var mMerchant = new Merchant();
 
-  mMerchant.productCampaign_data.productName = req.body.productName || '';
-  mMerchant.productCampaign_data.productCampaignQueueNumber = req.body.productCampaignQueueNumber || '';
-  mMerchant.productCampaign_data.imageFileID = req.body.imageFileID || '';
-  mMerchant.productCampaign_data.oldPrice = req.body.oldPrice || '';
-  mMerchant.productCampaign_data.newPrice = req.body.newPrice || '';
-
+  mMerchant.merchant_data.merchantName = req.body.merchantName || '';
+  mMerchant.merchant_data.merchantLocationLat = req.body.merchantLocationLat || '';
+  mMerchant.merchant_data.merchantLocationLong = req.body.merchantLocationLong || '';
+  mMerchant.merchant_data.merchantBusinessDomain  = req.body.merchantBusinessDomain || '';
+  mMerchant.merchant_data.merchantWeeklyEligiblePromotion  = req.body.merchantWeeklyEligiblePromotion || '';
+  mMerchant.merchant_data.merchantMembershipStart = req.body.merchantMembershipStart || '';
+  mMerchant.merchant_data.merchantMembershipEnds = req.body.merchantMembershipEnds || '';
     mMerchant.save(function (err) {
-
       if (err) {
         return next(err);
       }
-        req.flash('success', {msg: 'Yeni Kampanya Eklendi.'});
-        res.redirect('/merchant/manageMerchants');
+        req.flash('success', {msg: 'Yeni Esnaf Eklendi.'});
+        res.redirect('/manageMerchants');
     });
 };
 
@@ -39,7 +39,7 @@ exports.getManageMerchants = function(req, res) {
     Merchant.find({}, function(err, sMerchants){
         if(err) res.send(err);
         //res.json(sMerchants);
-        res.render('Merchant/manageMerchants', { sMerchants : sMerchants})
+        res.render('merchant/manageMerchants', { sMerchants : sMerchants})
     });
 };
 
@@ -59,13 +59,16 @@ exports.postUpdateMerchant = function(req, res) {
 
     console.log("post" + req.body.docid);
     Merchant.findById(req.body.docid,function(err,sMerchant){
-        sMerchant.Merchant_data.queueNumber = req.body.queueNumber || '';
-        sMerchant.Merchant_data.productCampaignQueueNumber = req.body.productCampaignQueueNumber || '';
-        sMerchant.Merchant_data.imageFileID = req.body.imageFileID || '';
-        sMerchant.Merchant_data.oldPrice = req.body.oldPrice || '';
+        sMerchant.merchant_data.merchantName = req.body.merchantName || '';
+        sMerchant.merchant_data.merchantLocationLat = req.body.merchantLocationLat || '';
+        sMerchant.merchant_data.merchantLocationLong = req.body.merchantLocationLong || '';
+        sMerchant.merchant_data.merchantBusinessDomain  = req.body.merchantBusinessDomain || '';
+        sMerchant.merchant_data.merchantWeeklyEligiblePromotion  = req.body.merchantWeeklyEligiblePromotion || '';
+        sMerchant.merchant_data.merchantMembershipStart = req.body.merchantMembershipStart || '';
+        sMerchant.merchant_data.merchantMembershipEnds = req.body.merchantMembershipEnds || '';
         sMerchant.save();
-        req.flash('success', { msg: 'Duyuru Güncellendi.' });
-        res.redirect('/Merchant/manageMerchants');
+        req.flash('success', { msg: 'Esnaf Güncellendi.' });
+        res.redirect('/manageMerchants');
     })
 };
 
@@ -74,8 +77,8 @@ exports.getDeleteMerchant = function(req, res) {
     console.log("post" + req.query.id);
     Merchant.findById(req.query.id,function(err,sMerchant){
         sMerchant.remove();
-        req.flash('success', { msg: 'Duyuru Silindi.' });
-        res.redirect('/Merchant/manageMerchants');
+        req.flash('success', { msg: 'Esnaf Silindi.' });
+        res.redirect('/manageMerchants');
     })
 
 

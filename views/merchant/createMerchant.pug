@@ -4,7 +4,7 @@ block content
   .page-header
     h3 Yeni Esnaf Oluştur
   .container-fluid 
-      form.form-horizontal(action='/merchant/createMerchant', method='POST')
+      form.form-horizontal(action='/createMerchant', method='POST')
         input(type='hidden', name='_csrf', value=_csrf)
         .form-group
           label.col-sm-3.control-label(for='merchantName') Esnaf Adı
@@ -26,6 +26,14 @@ block content
           label.col-sm-3.control-label(for='merchantWeeklyEligiblePromotion') İzin Verilen Promosyon Sayısı
           .col-sm-7
             input.form-control(type='text', name='merchantWeeklyEligiblePromotion', id='merchantWeeklyEligiblePromotion', value='merchantWeeklyEligiblePromotion')
+        .form-group
+          label.col-sm-3.control-label(for='merchantMembershipStart') Üyelik Başlangıç Tarihi
+          .col-sm-7
+            input.form-control(type='date', name='merchantMembershipStart', id='merchantMembershipStart', value='merchantMembershipStart')
+        .form-group
+          label.col-sm-3.control-label(for='merchantMembershipEnds') Üyelik Bitiş Tarihi
+          .col-sm-7
+            input.form-control(type='date', name='merchantMembershipEnds', id='merchantMembershipEnds', value='merchantMembershipEnds')
         .form-group
           .col-sm-offset-3.col-sm-4
             button.btn.btn.btn-primary(type='submit')
